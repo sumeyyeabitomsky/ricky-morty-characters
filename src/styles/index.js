@@ -40,7 +40,7 @@ const styles = (theme) => ({
     color: "#6d6d6d",
   },
   customHeight: {
-    maxHeight: "122px",
+    maxHeight: "212px",
     overflowY: "scroll",
     textAlign: "left",
     border: "none",
