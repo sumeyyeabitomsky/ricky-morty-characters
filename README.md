@@ -1,6 +1,12 @@
-# Getting Started with Create React App
+# Ricky & Morty Characters List
+![Who loves this toon?](https://github.com/sumeyyeabitomsky/ricky-morty-characters/blob/master/src/banner.jpg?raw=true)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Codesandbox Link
+Open [https://codesandbox.io/s/autumn-grass-kmor5](https://codesandbox.io/s/autumn-grass-kmor5)
+
+## What is inside?
+A list of magical combo and some `react mui` practices :)
+
 
 ## Available Scripts
 
