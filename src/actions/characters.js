@@ -3,14 +3,19 @@ import {
   GET_CHARACTERS,
   GET_CHARACTERS_ERROR,
   SET_DEFAULT_PAGE,
-  SET_DEFAULT_PAGE_ERROR,
   SET_COUNT,
+  SET_IS_LOADING,
 } from "./types";
+
 import _ from "lodash";
 import config from "../config";
 
 export const getCharacters = (page = 1) => async (dispatch) => {
   try {
+    dispatch({
+      type: SET_IS_LOADING,
+      isLoading: true,
+    });
     const { data } = await axios.get(
       `${config.BASE_URL}/api/character/?page=${page}`
     );
@@ -18,16 +23,20 @@ export const getCharacters = (page = 1) => async (dispatch) => {
     const characters = await extendCharacters(data.results);
     const { count, next, pages } = data.info;
     dispatch({
-      type: SET_DEFAULT_PAGE,
-      defaultPage: page,
-    });
-    dispatch({
       type: SET_COUNT,
       count: pages,
     });
     dispatch({
+      type: SET_DEFAULT_PAGE,
+      defaultPage: page,
+    });
+    dispatch({
       type: GET_CHARACTERS,
       payload: characters,
+    });
+    dispatch({
+      type: SET_IS_LOADING,
+      isLoading: false,
     });
   } catch (err) {
     dispatch({
@@ -38,7 +47,18 @@ export const getCharacters = (page = 1) => async (dispatch) => {
 };
 
 export const setDefaultPage = (page) => async (dispatch) => {
+  dispatch({
+    type: SET_DEFAULT_PAGE,
+    defaultPage: page,
+  });
   await getCharacters(page)(dispatch);
+};
+
+export const setIsLoading = (bool) => async (dispatch) => {
+  dispatch({
+    type: SET_IS_LOADING,
+    isLoading: bool,
+  });
 };
 
 /**

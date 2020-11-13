@@ -2,8 +2,8 @@ import {
   GET_CHARACTERS,
   GET_CHARACTERS_ERROR,
   SET_DEFAULT_PAGE,
-  SET_DEFAULT_PAGE_ERROR,
   SET_COUNT,
+  SET_IS_LOADING,
 } from "../actions/types";
 
 const initialState = {
@@ -11,6 +11,7 @@ const initialState = {
   data: [],
   defaultPage: 1,
   count: 0,
+  isLoading: true,
 };
 
 export default function (state = initialState, action) {
@@ -19,7 +20,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: false,
-        data: action.payload,
+        data: [...state.data, ...action.payload],
       };
     case GET_CHARACTERS_ERROR:
       return {
@@ -32,15 +33,15 @@ export default function (state = initialState, action) {
         ...state,
         defaultPage: action.defaultPage,
       };
-    case SET_DEFAULT_PAGE_ERROR:
-      return {
-        ...state,
-        defaultPage: 1,
-      };
     case SET_COUNT:
       return {
         ...state,
         count: action.count,
+      };
+    case SET_IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.isLoading,
       };
     default:
       return state;

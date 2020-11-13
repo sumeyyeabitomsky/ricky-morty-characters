@@ -3,9 +3,8 @@ import Logo from "../logo.png";
 import Banner from "../banner.jpg";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import { Pagination } from "@material-ui/lab";
 
-const Header = ({ classes, characters, handleChangePage }) => {
+const Header = ({ classes }) => {
   return (
     <Grid item xs={12}>
       <Paper className={classes.paper}>
@@ -14,20 +13,6 @@ const Header = ({ classes, characters, handleChangePage }) => {
         </h2>
         <img alt="Banner" src={Banner} className={classes.banner} />
       </Paper>
-      <Grid item xs={12}>
-        <Pagination
-          variant="outlined"
-          color="secondary"
-          siblingCount={0}
-          boundaryCount={0}
-          count={characters.count}
-          defaultPage={1}
-          page={characters.defaultPage}
-          boundaryCount={2}
-          className={classes.inlinePagination}
-          onChange={handleChangePage}
-        />
-      </Grid>
     </Grid>
   );
 };
